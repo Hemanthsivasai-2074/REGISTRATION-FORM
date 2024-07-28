@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      form {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        background-size: 75% 50%;
+        font-family: cursive;
+      }
+
+      label {
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type="reset"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type="file"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: black;
+      }
+    </style>
+    <script type="text/javascript">
+      var ck_name = /^[A-Za-z0-9 ]{3,20}$/;
+      var ck_email = /^([\w-]+(?:\.[\w-]+))@((?:[\w-]+\.)\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+      var ck_username = /^[A-Za-z0-9_]{1,20}$/;
+      var ck_password = /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
+      var name ;
+        var email ;
+        var username ;
+        var address ;
+        var dept;
+        var campus;
+        var gender ;
+        var par;
+        var dob;
+        var age;
+        var phone;
+        var pass;
+      function validate() {
+        var errors = [];
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var username = document.getElementById("username").value;
+        var address = document.getElementById("address").value;
+        try{
+        var dept=document.querySelector('input[name="branch"]:checked').value;
+        var campus=document.querySelector('input[name="cam"]:checked').value;
+        var gender = document.querySelector('input[name="gender"]:checked').value;
+        var par=document.querySelector('input[name="po"]:checked').value;
+        }
+        catch(Exception){
+          errors[errors.length]= "You must check at least on option";
+        }
+        var dob=document.getElementById("dob").value;
+        var age=document.getElementById("age").value;
+        var phone=document.getElementById("phone").value;
+        var pass=document.getElementById("password").value;
+        console.log(name+email+username+address+dept+campus+gender+par+dob+age+phone+pass);
+        console.log("\n"+pass);
+        
+        if (!ck_name.test(name)) {
+          errors[errors.length] = "YouvalidName .";
+        }
+        if (!ck_email.test(email)) {
+          errors[errors.length] = "Youmust enter a validemail address.";
+        }
+        if (!ck_username.test(username)) {
+          errors[errors.length] = "YouvalidUserNameno specialchar.";
+        }
+        if (!ck_password.test(pass)) {
+          errors[errors.length] = "Youmust enter a validPasswordmin 6 char.";
+        }
+        if (gender == 0) {
+          errors[errors.length] = "SelectGender";
+        }
+        if (errors.length > 0) {
+          reportErrors(errors);
+          return false;
+        }
+        return newpage(name,email,username,address,dept,campus,gender,par,dob,age,phone,pass);
+      }
+
+      function reportErrors(errors) {
+        var msg = "Please Enter Valide Data...\n";
+        for (var i = 0; i < errors.length; i++) {
+          var numError = i + 1;
+          msg += "\n" + numError + ". " + errors[i];
+        }
+        alert(msg);
+      }
+      function newpage(name,email,username,address,dept,campus,gender,par,dob,age,phone,pass){
+        document.getElementById("public").innerHTML="";
+        document.getElementById("public").insertAdjacentHTML("afterend","<h2>You Entered:</h2><br><h3>Name:</h3>"+name+"<br><h3>Email:</h3>"+email+"<br><h3>Address:</h3>"+address+"<br><h3>Dept:</h3>"+dept+"<br><h3>Campus:</h3>"+campus+"<br><h3>Gender:</h3>"+gender+"<Br><h3>Parent Occupation:</h3>+"+par+"<br><h3>DOB:</h3>"+dob+"<br><h3>Age:</h3>"+age+"<br><h3>phone:</h3>"+phone);
+      }
+    </script>
+  </head>
+  <body id="public">
+    <div style="height:30px"></div>
+    <div id="container">
+      <div style="height:30px"></div>
+      <form autocomplete="off" enctype="multipart/form-data" name="form">
+        <div class="info" style="padding-left:20px">
+          <center>
+            <h2>Registration Form</h2>
+          </center>
+          <ul>
+            <li id="foli1" class=" ">
+              <labelclass="desc" id="title1" for="Field1">
+                <b>FullName</b>
+                </label>
+                <div>
+                  <input id="name" name="name" type="text" class="field text medium" value="" maxlength="255" tabindex="1" />
+                </div>
+            </li>
+            <li id="foli2" class=" ">
+              <labelclass="desc" id="title2" for="Field2">
+                <b>Email</b>
+                </label>
+                <div>
+                  <input id="email" name="email" type="email" class="fieldtext medium" value="" maxlength="255" tabindex="2" />
+                </div>
+            </li>
+            <li id="foli3" class=" ">
+              <labelclass="desc" id="title3" for="Field3">
+                <b>User-ID</b>
+                </label>
+                <div>
+                  <input id="username" name="username" type="text" class="fieldtext medium" value="" maxlength="255" tabindex="3" />
+                </div>
+            </li>
+            <li>
+              <label for="address">
+                <b>Address</b>
+              </label>
+              <textarea id="address" name="address"></textarea>
+            </li>
+            <li>
+              <labelclass="desc" id="title6" for="Field6">
+                <b>Department</b>
+                </label>
+                <div>
+                  <input type="radio" name="branch" id="cse" value="cse" /> Computer Science <br>
+                  <input type="radio" name="branch" id="ece" value="ece" />Electrical and Electronics <br>
+                  <input type="radio" name="branch" id="aero" value="aero" /> Aerospace <br>
+                  <input type="radio" name="branch" id="robo" value="robo" />Robotics <br>
+                  <input type="radio" name="branch" id="ml&al" value="Ml&al" /> Machine Learning and Artificial Intelligence. <br>
+                  <input type="radio" name="branch" id="civil" value="civil" />Civil <br>
+                  <input type="radio" name="branch" id="mech" value="mech" />Mechanical <br>
+            </li>
+            <br>
+            </li>
+            <li>
+              <labelclass="desc" id="title6" for="Field6">
+                <b>Campus</b>
+                </label>
+                <div>
+                  <input type="radio" name="cam" id="ap" value="ap" /> Amaravathi <br>
+                  <input type="radio" name="cam" id="ka" value="ka" /> Bangaluru <br>
+                  <input type="radio" name="cam" id="ts" value="ts" /> Hyderabad <br>
+                  <input type="radio" name="cam" id="gs" value="ga" /> Ahmedabad <br>
+                  <input type="radio" name="cam" id="ma" value="ma" /> pune <br>
+                  <input type="radio" name="cam" id="tn" value="tn" /> Chennai <br>
+                  <input type="radio" name="cam" id="wb" value="wb" /> Kolkata <br>
+            <li id="foli6" class=" ">
+              <labelclass="desc" id="title6" for="Field6">
+                <b>Gender</b>
+                </label>
+                <div>
+                  <input type="radio" id="gender1" name="gender" value="male" /> Male <input type="radio" id="gender2" name="gender" value="female" /> Female <br>
+            </li>
+            <br>
+            <li>
+              <labelclass="desc" id="title6" for="Field6">
+                <b>Parents Occupation</b>
+                </label>
+                <div>
+                  <input type="radio" name="po" id="govt" value="govt" /> Goverment Sector <br>
+                  <input type="radio" name="po" id="pvt" value="pvt" /> Private Sector <br>
+                  <input type="radio" name="po" id="b/a" value="b/a" />Business/Farmer
+            </li><br>
+            <li>
+              <label for="dob">
+                <b>Date of Birth</b>
+								
+              </label>
+              <br>
+              <input type="date" id="dob" name="dob">
+            </li>
+            <br>
+            <li>
+              <label>
+                <b> Age</b>
+              </label>
+              <input type="number" id="age" size="15" />
+            </li>
+            <li>
+              <lable>
+                <b>10 <sup>th</sup>Mark Sheet... </b>
+              </lable>
+              <br>
+              <input type="file" id="myFile" name="filename">
+            </li>
+            <br>
+            <li>
+              <lable>
+                <b>12 <sup>th</sup>Mark Sheet... </b>
+              </lable>
+              <br>
+              <input type="file" id="myile" name="filename">
+            </li>
+            <br>
+            <li id="foli15" class=" ">
+              <label for="phone">
+                <b>Phone</b>
+              </label>
+              <br>
+              <input type="tel" id="phone" name="phone" class="fieldtext medium" value="" maxlength="255" tabindex="3" />
+            </li>
+            <br>
+            <li id="foli4" class=" ">
+              <label for="password">
+                <b>Password</b>
+              </label>
+              <br>
+              <input type="password" id="password" name="password">
+              <br>
+              <br>
+            </li>
+            <li>
+              <label for="feedback">
+                <b>
+                  <pre>What do you think about our Institutions.....</pre>
+                </b>
+              </label>
+              <textarea id="addr" name="address"></textarea>
+            </li>
+            <input type="reset" style=" background:#0060a1; color:#FFFFFF; font-size:14px; 
+border:1px solid#0060a1" />
+            <br>
+            <br>
+            <div class="buttons">
+              <input type="button" onclick="validate()"value="Submit" style=" background:#0060a1; color:#FFFFFF; font-size:14px; 
+border:1px solid#0060a1" />
+            </div>
+          </ul>
+      </form>
+      <div style="height:20px"></div>
+    </div>
+    <!--container-->
+  </body>
+  </html>
+  </ul>
+  </form>
+  <div style="height:20px"></div>
+  </div>
+  <!--container-->
+  </body>
+  </html>
